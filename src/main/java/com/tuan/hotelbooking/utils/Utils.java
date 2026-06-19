@@ -1,4 +1,4 @@
-package com.tuan.hotelbooking.common.utils;
+package com.tuan.hotelbooking.utils;
 
 import com.tuan.hotelbooking.dto.BookingDTO;
 import com.tuan.hotelbooking.dto.RoomDTO;

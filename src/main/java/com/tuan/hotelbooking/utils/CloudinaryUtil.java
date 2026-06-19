@@ -1,9 +1,8 @@
-package com.tuan.hotelbooking.common.utils;
+package com.tuan.hotelbooking.utils;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.tuan.hotelbooking.common.base.ErrorCode;
-import com.tuan.hotelbooking.exception.AppException;
+import com.tuan.hotelbooking.exception.OurException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,7 +25,7 @@ public class CloudinaryUtil {
                     .upload(file.getBytes(), ObjectUtils.asMap("resource_type", "auto"));
             return data.get("secure_url").toString();
         } catch (IOException e) {
-            throw new AppException(ErrorCode.UPLOAD_FAILED);
+            throw new OurException("File upload failed: " + e.getMessage());
         }
     }
 
@@ -41,14 +40,14 @@ public class CloudinaryUtil {
             String resourceType = getResourceTypeFromUrl(url);
             cloudinary.uploader().destroy(publicId, ObjectUtils.asMap("resource_type", resourceType));
         } catch (IOException e) {
-            throw new AppException(ErrorCode.FILE_DELETE_FAILED);
+            throw new OurException("File deletion failed: " + e.getMessage());
         }
     }
 
     public void validateImageFile(MultipartFile image) {
         String filename = image.getOriginalFilename();
         if (filename == null || !isValidSuffixImage(filename)) {
-            throw new AppException(ErrorCode.INVALID_REQUEST, "Invalid image file format.");
+            throw new OurException("Invalid image file type. Allowed types: .jpg, .jpeg, .png, .gif, .bmp, .webp");
         }
     }
 

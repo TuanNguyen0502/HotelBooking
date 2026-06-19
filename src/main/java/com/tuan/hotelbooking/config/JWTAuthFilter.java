@@ -1,7 +1,7 @@
 package com.tuan.hotelbooking.config;
 
 import com.tuan.hotelbooking.service.CustomUserDetailsService;
-import com.tuan.hotelbooking.common.utils.JWTUtils;
+import com.tuan.hotelbooking.utils.JWTUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
