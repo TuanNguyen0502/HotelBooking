@@ -15,15 +15,14 @@ import java.util.function.Function;
 
 @Service
 public class JWTUtils {
-    @Value("${JWT_SECRET_KEY}")
-    private String secret;
+    @Value("${security.jwt.secret-key}")
+    private String secreteString;
 
     private static final long EXPIRATION_TIME = 1000 * 60 * 24 * 7; // 7 days
-    private final SecretKey secretKey;
 
-    public JWTUtils() {
-        byte[] encodedKey = Base64.getDecoder().decode(secret.getBytes(StandardCharsets.UTF_8));
-        this.secretKey = new SecretKeySpec(encodedKey, "HmacSHA256");
+    private SecretKey getSignInKey() {
+        byte[] keyBytes = Base64.getDecoder().decode(secreteString.getBytes(StandardCharsets.UTF_8));
+        return new SecretKeySpec(keyBytes, "HmacSHA256");
     }
 
     public String generateToken(UserDetails userDetails) {
@@ -31,7 +30,7 @@ public class JWTUtils {
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(secretKey)
+                .signWith(getSignInKey())
                 .compact();
     }
 
@@ -40,7 +39,7 @@ public class JWTUtils {
     }
 
     private <T> T extractClaims(String token, Function<Claims, T> claimsResolver) {
-        return claimsResolver.apply(Jwts.parser().verifyWith(secretKey)
+        return claimsResolver.apply(Jwts.parser().verifyWith(getSignInKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload());
