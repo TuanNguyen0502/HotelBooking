@@ -6,4 +6,6 @@ public interface ICloudinaryService {
     String uploadImage(MultipartFile file);
 
     String updateImage(MultipartFile file, String oldUrl);
+
+    void deleteImage(String url);
 }

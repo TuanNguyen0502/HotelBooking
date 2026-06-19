@@ -22,4 +22,9 @@ public class CloudinaryServiceImpl implements ICloudinaryService {
         cloudinaryUtil.validateImageFile(file);
         return cloudinaryUtil.updateFile(file, oldUrl);
     }
+
+    @Override
+    public void deleteImage(String url) {
+        cloudinaryUtil.deleteFile(url);
+    }
 }
