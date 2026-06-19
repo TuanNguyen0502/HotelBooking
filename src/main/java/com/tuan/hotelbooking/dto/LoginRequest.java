@@ -1,4 +1,4 @@
-package com.tuan.hotelbooking.dto.request;
+package com.tuan.hotelbooking.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

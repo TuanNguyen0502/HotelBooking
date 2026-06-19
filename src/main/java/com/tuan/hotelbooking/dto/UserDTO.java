@@ -1,4 +1,4 @@
-package com.tuan.hotelbooking.dto.response;
+package com.tuan.hotelbooking.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -8,11 +8,11 @@ import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserResponse {
+public class UserDTO {
     private Long id;
     private String email;
     private String name;
     private String phoneNumber;
     private String role;
-    private List<BookingResponse> bookingResponses = new ArrayList<>();
+    private List<BookingDTO> bookings = new ArrayList<>();
 }

@@ -1,4 +1,4 @@
-package com.tuan.hotelbooking.dto.response;
+package com.tuan.hotelbooking.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -14,10 +14,10 @@ public class Response {
     private String role;
     private String expirationTime;
     private String bookingConfirmationCode;
-    private UserResponse user;
-    private RoomResponse room;
-    private BookingResponse booking;
-    private List<UserResponse> users;
-    private List<RoomResponse> rooms;
-    private List<BookingResponse> bookings;
+    private UserDTO user;
+    private RoomDTO room;
+    private BookingDTO booking;
+    private List<UserDTO> users;
+    private List<RoomDTO> rooms;
+    private List<BookingDTO> bookings;
 }

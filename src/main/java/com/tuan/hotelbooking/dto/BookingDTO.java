@@ -1,4 +1,4 @@
-package com.tuan.hotelbooking.dto.response;
+package com.tuan.hotelbooking.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BookingResponse {
+public class BookingDTO {
     private Long id;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
@@ -15,6 +15,6 @@ public class BookingResponse {
     private int numberOfChildren;
     private int totalNumberOfGuest;
     private String bookingConfirmationCode;
-    private UserResponse user;
-    private RoomResponse room;
+    private UserDTO user;
+    private RoomDTO room;
 }
