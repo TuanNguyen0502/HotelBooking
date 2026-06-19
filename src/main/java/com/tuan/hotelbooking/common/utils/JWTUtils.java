@@ -1,4 +1,4 @@
-package com.tuan.hotelbooking.utils;
+package com.tuan.hotelbooking.common.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package com.tuan.hotelbooking.security;
+package com.tuan.hotelbooking.config;
 
 import org.jspecify.annotations.NonNull;
 import org.springframework.context.annotation.Bean;

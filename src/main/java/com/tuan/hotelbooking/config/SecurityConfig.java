@@ -1,4 +1,4 @@
-package com.tuan.hotelbooking.security;
+package com.tuan.hotelbooking.config;
 
 import com.tuan.hotelbooking.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;

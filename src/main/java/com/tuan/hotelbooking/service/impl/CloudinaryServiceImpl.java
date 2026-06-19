@@ -1,7 +1,7 @@
 package com.tuan.hotelbooking.service.impl;
 
 import com.tuan.hotelbooking.service.interfaces.ICloudinaryService;
-import com.tuan.hotelbooking.utils.CloudinaryUtil;
+import com.tuan.hotelbooking.common.utils.CloudinaryUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

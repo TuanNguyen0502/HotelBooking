@@ -1,7 +1,9 @@
-package com.tuan.hotelbooking.utils;
+package com.tuan.hotelbooking.common.utils;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.tuan.hotelbooking.common.base.ErrorCode;
+import com.tuan.hotelbooking.exception.AppException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +26,7 @@ public class CloudinaryUtil {
                     .upload(file.getBytes(), ObjectUtils.asMap("resource_type", "auto"));
             return data.get("secure_url").toString();
         } catch (IOException e) {
-            throw new RuntimeException("Failed to upload file to Cloudinary", e);
+            throw new AppException(ErrorCode.UPLOAD_FAILED);
         }
     }
 
@@ -39,14 +41,14 @@ public class CloudinaryUtil {
             String resourceType = getResourceTypeFromUrl(url);
             cloudinary.uploader().destroy(publicId, ObjectUtils.asMap("resource_type", resourceType));
         } catch (IOException e) {
-            throw new RuntimeException("Failed to delete file from Cloudinary", e);
+            throw new AppException(ErrorCode.FILE_DELETE_FAILED);
         }
     }
 
     public void validateImageFile(MultipartFile image) {
         String filename = image.getOriginalFilename();
         if (filename == null || !isValidSuffixImage(filename)) {
-            throw new RuntimeException("Invalid image file format.");
+            throw new AppException(ErrorCode.INVALID_REQUEST, "Invalid image file format.");
         }
     }
 
